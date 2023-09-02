@@ -1,8 +1,6 @@
 export function Header() {
   return (
-    <div>
-      <h1>Welcome to Header!</h1>
-    </div>
+    <div className="border-spacing-1 bg-slate-800 p-10">Welcome to Header!</div>
   );
 }
 
