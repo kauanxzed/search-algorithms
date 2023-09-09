@@ -6,13 +6,11 @@ export interface ButtonProps {
 
 export function Button(props: ButtonProps) {
   return (
-    <div className="relative">
-      <div
-        className={`px-5 py-3 bg-teal-500 w-fit rounded-xl hover:bg-teal-700 cursor-pointer ${props.className}`}
-        onClick={props.onClick}
-      >
-        <span className="text-white">{props.msg}</span>
-      </div>
+    <div
+      className={`px-5 py-3 bg-teal-500 w-fit rounded-xl hover:bg-teal-700 cursor-pointer ${props.className}`}
+      onClick={props.onClick}
+    >
+      <span className="text-white">{props.msg}</span>
     </div>
   );
 }

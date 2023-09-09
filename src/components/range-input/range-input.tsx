@@ -1,29 +1,30 @@
 import { useState } from 'react';
 
 /* eslint-disable-next-line */
-export interface RangeInputProps {}
+export interface RangeInputProps {
+  onArrayLengthChange: (value: number) => void;
+}
 
 export function RangeInput(props: RangeInputProps) {
   const [arrayLength, setArrayLength] = useState(10);
 
-  function createArray(arrayLength: number) {
-    throw new Error('Function not implemented.');
-  }
+  const handleChange = (value: number) => {
+    setArrayLength(value);
+    props.onArrayLengthChange(value);
+  };
 
   return (
-    <div className="grid">
+    <div className="grid place-items-center relative right-14">
       <label className="text-white">Array Length:{arrayLength}</label>
       <input
-        id="arraylength"
         type="range"
         step={1}
-        max={100}
+        max={70}
         min={10}
         defaultValue={10}
         className="cursor-pointer"
         onChange={(e) => {
-          setArrayLength(e.target.valueAsNumber);
-          createArray(arrayLength);
+          handleChange(e.target.valueAsNumber);
         }}
       ></input>
     </div>

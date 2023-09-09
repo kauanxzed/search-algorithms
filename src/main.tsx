@@ -6,6 +6,7 @@ import Header from './components/header/header';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <StrictMode>
     <Header />
