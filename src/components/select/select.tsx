@@ -1,24 +1,31 @@
 import { Listbox } from '@headlessui/react';
 import { useState } from 'react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
+import { Sorting } from '../../../types/sorting.enum';
 
 const sortingTypes = [
-  { name: 'Booble Sort' },
-  { name: 'Quick Sort' },
-  { name: 'Merge Sort' },
-  { name: 'Heap Sort' },
+  { name: Sorting.BubbleSort },
+  { name: Sorting.QuickSort },
+  { name: Sorting.MergeSort },
+  { name: Sorting.HeapSort },
 ];
 
 export interface SelectProps {
   options?: string[];
   className?: string;
+  setSelectedOption?: (option: string) => void;
 }
 
 export function Select(props: SelectProps) {
   const [selected, setSelected] = useState(sortingTypes[0]);
+
+  const handleOnchange = (selected: string) => {
+    props.setSelectedOption && props.setSelectedOption(selected);
+  };
+
   return (
     <div className={`${props.className}`}>
-      <Listbox value={selected} onChange={setSelected}>
+      <Listbox value={selected}>
         <div className="relative">
           <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-3 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
             <span className="block truncate">{selected.name}</span>
@@ -39,6 +46,10 @@ export function Select(props: SelectProps) {
                   }`
                 }
                 value={sortingType}
+                onClick={() => {
+                  setSelected(sortingType);
+                  handleOnchange(sortingType.name);
+                }}
               >
                 {({ selected }) => (
                   <div>
